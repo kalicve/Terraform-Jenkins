@@ -23,9 +23,9 @@ pipeline {
 
         stage('Plan') {
             steps {
-                sh 'pwd;cd terraform/ ; terraform init'
-                sh "pwd;cd terraform/ ; terraform plan -out tfplan"
-                sh 'pwd;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
+                powershell 'pwd;cd terraform/ ; terraform init'
+                powershell "pwd;cd terraform/ ; terraform plan -out tfplan"
+                powershell 'pwd;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
@@ -46,7 +46,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
+                powershell "pwd;cd terraform/ ; terraform apply -input=false tfplan"
             }
         }
     }
